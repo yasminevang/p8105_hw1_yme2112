@@ -3,3 +3,13 @@ title: "p8105_hw1_yme2112"
 output: github_document
 ---
 
+Loading necessary data set from "moderndive" package
+
+```{r} 
+library(moderndive)
+data("early_january_weather")
+
+```
+
+
+
