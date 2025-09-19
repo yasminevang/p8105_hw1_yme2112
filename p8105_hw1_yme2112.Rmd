@@ -11,7 +11,7 @@ data("early_january_weather")
 
 ```
 
-Let's take a look at the data 
+## Let's take a look at the data 
 
 ```{r}
 View(early_january_weather)
@@ -27,6 +27,23 @@ variables found in `ncol(early_january_weather)` and 358 entries from
 ,`temp`(temperature in F), `precip` (precipitation in inches), help determine 
 environmental conditions in the hour. The mean temperature is 39.58F as said 
 in `mean(early_january_weather$temp)`.
+
+## Let's make a scatter plot and save it
+
+```{r}
+library(ggplot2)
+
+january_plot = ggplot(data = early_january_weather,
+       aes(x = time_hour, y = temp, color = humid)) +
+  geom_point()
+
+ggsave("january_scatterplot.png", plot = january_plot)
+
+```
+
+
+From what we can see, after January 10th there were more instances of humidity.
+Most of the humid days occurred when the temp was between 40 and 50F.
 
 
 
