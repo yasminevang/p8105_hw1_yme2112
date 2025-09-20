@@ -44,7 +44,7 @@ ggsave("january_scatterplot.png", plot = january_plot)
 From what we can see, after January 10th there were more instances of humidity.
 Most of the humid days occurred when the temp was between 40 and 50F.
 
-##Let's do Problem 2
+## Let's do Problem 2
 
 ```{r}
 problem_df =
@@ -52,7 +52,7 @@ problem_df =
     vec_numeric = rnorm(10),
     vec_logic = vec_numeric > 0, 
     vec_length = sample(c("red","yellow","blue"), size = 10, replace = TRUE),
-    vec_factor = (sample(c("low", "medium", "high"), size = 10, replace = TRUE))
+    vec_factor = factor(sample(c("low", "medium", "high"), size = 10, replace = TRUE))
   )
 ```
 
@@ -63,10 +63,20 @@ mean(problem_df|> pull(vec_numeric))
 mean(pull(problem_df,vec_logic))
 mean(problem_df |> pull(vec_length))
 mean(problem_df |> pull(vec_factor))
-
 ```
 
 The last two vectors labled as `vec_factor` and `vec_length` are not numerically
 based, but character based and that's why there is no mean.
+
+```{r}
+num_logic = as.numeric(problem_df |> pull(vec_logic))
+num_length = as.numeric(problem_df |> pull(vec_length))
+num_factor = as.numeric(problem_df |> pull(vec_factor))
+```
+
+`num_length` comes up as an error. Character means cannot be found because it 
+is text. However, the `num_factor` came up as an error in mean but not 
+`as.numeric` which is because in the background, R transforms these factor
+labels into numbers that represent them.
 
 
